@@ -34,9 +34,9 @@ def filter_data(df: pd.DataFrame, grace_types: list, gw_types: list, significanc
         pd.DataFrame: Filtered DataFrame.
     """
     # Filtering by GraceDB object types
-    filtered_df = df[df['Object_Type_x'].isin(grace_types) & df['Object_Type_y'].isin(gw_types)]
+    filtered_df = df[df['GDB_Class'].isin(grace_types) & df['HierarchicalClass'].isin(gw_types)]
     
     # Filtering by significance levels
-    filtered_df = filtered_df[filtered_df['Significance'].isin(significance)]
+    filtered_df = filtered_df[filtered_df['Significant'].isin(significance)]
     
     return filtered_df
