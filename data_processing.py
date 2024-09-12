@@ -21,7 +21,7 @@ def load_data(gracedb_path: str, gwskynet_path: str) -> pd.DataFrame:
     merged_df = pd.merge(gracedb_df, gwskynet_df, on='EventName', how='inner')
     return merged_df
 
-def filter_data(df: pd.DataFrame, grace_types: list, gw_types: list, significance: list) -> pd.DataFrame:
+def filter_data(df: pd.DataFrame, grace_types: list, gw_types: list, significance: list, detectors: list) -> pd.DataFrame:
     """
     Filter the merged DataFrame based on the selected checkboxes.
     
@@ -40,5 +40,7 @@ def filter_data(df: pd.DataFrame, grace_types: list, gw_types: list, significanc
     
     # Filtering by significance levels
     filtered_df = filtered_df[filtered_df['Significant'].isin(significance)]
+
+    filtered_df = filtered_df[filtered_df['Detectors'].apply(lambda x: any(d in x for d in detectors))]
     
     return filtered_df
