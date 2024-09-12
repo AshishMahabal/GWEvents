@@ -1,6 +1,7 @@
 # data_processing.py
 
 import pandas as pd
+import streamlit as st
 
 def load_data(gracedb_path: str, gwskynet_path: str) -> pd.DataFrame:
     """
@@ -33,6 +34,7 @@ def filter_data(df: pd.DataFrame, grace_types: list, gw_types: list, significanc
     Returns:
         pd.DataFrame: Filtered DataFrame.
     """
+
     # Filtering by GraceDB object types
     filtered_df = df[df['GDB_Class'].isin(grace_types) & df['HierarchicalClass'].isin(gw_types)]
     

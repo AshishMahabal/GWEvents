@@ -10,11 +10,12 @@ st.set_page_config(
 )
 
 # Load data
-@st.cache_data
+#@st.cache_data
 def load_merged_data():
     return load_data('GraceDB.csv', 'GWSkyNet.csv')
 
 data = load_merged_data()
+#st.write(data)
 
 # Sidebar - Checkbox filters
 st.sidebar.header("Filter Options")
@@ -22,20 +23,20 @@ st.sidebar.header("Filter Options")
 # GraceDB Checkbox Filters
 gracedb_types = st.sidebar.multiselect(
     "GraceDB Object Types",
-    options=["Glitches", "BBH", "NS"],
+    options=["Glitch", "BBH", "NS"],
     default=["BBH", "NS"]
 )
 
 # GWSkyNet Checkbox Filters
 gwskynet_types = st.sidebar.multiselect(
     "GWSkyNet-Multi Object Types",
-    options=["Glitches", "BBH", "NS"],
+    options=["Glitch", "BBH", "NS"],
     default=["BBH", "NS"]
 )
 
 # Significance Checkbox Filters
 significance_levels = st.sidebar.multiselect(
-    "Significance Levels",
+    "Significant Events",
     options=["High", "Low"],
     default=["High"]
 )
@@ -48,4 +49,4 @@ st.title("Gravitational Wave Astronomy Alert Filtering")
 st.write("Use the options in the sidebar to filter gravitational wave alerts based on different object types and significance levels.")
 
 # Display filtered data
-st.dataframe(filtered_data)
+st.write(filtered_data)
