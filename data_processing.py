@@ -17,7 +17,7 @@ def load_data(gracedb_path: str, gwskynet_path: str) -> pd.DataFrame:
     gwskynet_df = pd.read_csv(gwskynet_path)
     
     # Merging on 'Event_ID'
-    merged_df = pd.merge(gracedb_df, gwskynet_df, on='Event_ID', how='inner')
+    merged_df = pd.merge(gracedb_df, gwskynet_df, on='EventName', how='inner')
     return merged_df
 
 def filter_data(df: pd.DataFrame, grace_types: list, gw_types: list, significance: list) -> pd.DataFrame:
