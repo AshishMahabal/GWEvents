@@ -57,8 +57,9 @@ filtered_data = filter_data(data, gracedb_types, gwskynet_types, significance_le
 
 # Dropdowns for selecting columns to plot
 st.sidebar.subheader("Plot Settings")
-x_axis_column = st.sidebar.selectbox("Select X-axis column", options=filtered_data.columns, index=2)
-y_axis_column = st.sidebar.selectbox("Select Y-axis column", options=filtered_data.columns, index=3)
+cols2use = ['FAR', 'SkyArea', 'MeanDistance', 'MaxDistance', 'LogBCI', 'LogBSN']
+x_axis_column = st.sidebar.selectbox("Select X-axis column", options=cols2use, index=2)
+y_axis_column = st.sidebar.selectbox("Select Y-axis column", options=cols2use, index=3)
 
 # Main content
 st.title("Filtering Gravitational Wave Alerts")
