@@ -3,6 +3,7 @@
 import streamlit as st
 from data_processing import load_data, filter_data
 import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
 
 # Set page configuration
@@ -102,9 +103,9 @@ if not filtered_data.empty:
         elif row['HierarchicalClass'] == "NS":
             marker = 's'  # Square for NS
         else:
-            marker = 'o'  # Default to circle if something unexpected
+            marker = '.'  # Default to dot if something unexpected
 
-        size = 100 if row['Significant'] else 30  # Bigger size for significant events
+        size = 100 if row['Significant'] == 'High' else 30  # Bigger size for significant events
 
         # Determine color: Green if GraceDB and GW SkyNet classes are the same, otherwise default color
         color = 'green' if row['HierarchicalClass'] == row['GDB_Class'] else 'blue'
@@ -115,8 +116,37 @@ if not filtered_data.empty:
     # Add labels and title
     ax.set_xlabel(x_axis_column)
     ax.set_ylabel(y_axis_column)
-    ax.set_title("Scatter Plot of Gravitational Wave Alerts")
+    ax.set_title("GW Alerts - GraceDB versus GWSkyNet-Multi")
 
+    # Add legend for each marker type
+    legend_labels = filtered_data['HierarchicalClass'].unique()
+    legend_labels = np.append(legend_labels, ['Matched', 'Differ','Significant','Iffy'])
+    handles = []
+    for label in legend_labels:
+        if label == "Glitch":
+            handle = plt.Line2D([], [], marker='x', color='black', linestyle='None', markersize=10, label=label)
+        elif label == "BBH":
+            handle = plt.Line2D([], [], marker='o', color='black', linestyle='None', markersize=10, label=label)
+        elif label == "NS":
+            handle = plt.Line2D([], [], marker='s', color='black', linestyle='None', markersize=10, label=label)
+        elif label == "Matched":
+            handle = plt.Line2D([], [], marker='^', color='green', linestyle='None', markersize=10, label=label)
+        elif label == "Differ":
+            handle = plt.Line2D([], [], marker='^', color='blue', linestyle='None', markersize=10, label=label)
+        elif label == "Significant":
+            handle = plt.Line2D([], [], marker='^', color='black', linestyle='None', markersize=10, label=label)
+        elif label == "Iffy":
+            handle = plt.Line2D([], [], marker='^', color='black', linestyle='None', markersize=3, label=label)
+        else:
+            handle = plt.Line2D([], [], marker='.', color='black', linestyle='None', markersize=10, label=label)
+        handles.append(handle)
+    
+    # Add legend
+    plt.legend(handles, legend_labels)
+
+
+
+    # Plot the data
     st.pyplot(fig)
 else:
     st.write("No data available for the selected criteria.")
