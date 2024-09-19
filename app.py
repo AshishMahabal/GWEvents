@@ -52,11 +52,11 @@ detector_h = col9.checkbox("H", value=True)
 detector_l = col10.checkbox("L", value=True)
 detector_v = col11.checkbox("V", value=False)
 selected_detectors = [d for d, selected in zip(["H", "L", "V"], [detector_h, detector_l, detector_v]) if selected]
-st.write(selected_detectors)
+#st.write(selected_detectors)
 
 # Choose Subselection Mode
 subselection_mode = st.sidebar.radio(
-    "Subselections",
+    "Subselections (buggy)",
     ("Any One", "Exactly One", "Any Two", "Exactly Two", "All Three")
 )
 

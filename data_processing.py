@@ -43,11 +43,11 @@ def filter_data(df: pd.DataFrame, grace_types: list, gw_types: list, significanc
     # Filtering by significance levels
     filtered_df = filtered_df[filtered_df['Significant'].isin(significance)]
 
-    st.write(detectors)
+    #st.write(detectors)
     # Filter by detectors based on subselection mode
     if len(detectors) > 0:
     #if detectors:
-        st.write(detectors)
+        #st.write(detectors)
         if subselection == "Any One":
             filtered_df = filtered_df[filtered_df['Detectors'].apply(lambda x: any(d in x for d in detectors))]
         elif subselection == "Exactly One":
