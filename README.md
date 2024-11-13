@@ -9,15 +9,15 @@ pip install -r requirements.txt
 
 ## Data Overview
 
-The application uses two CSV files: `event_predictions_table.csv` and `event_predictions_table_metadata.csv`. Below are the field names and the first row of data for each file:
+The application uses two CSV files: `GWSkyNet.csv` and `GraceDB.csv`. Below are the field names and the first row of data for each file:
 
-### `event_predictions_table.csv`
+### `GWSkyNet.csv`
 
 | EventName | Detectors | SkyArea | MeanDistance | MaxDistance | LogBCI | LogBSN | GlitchScore | NSScore | BBHScore | GlitchScoreErr | NSScoreErr | BBHScoreErr | HierarchicalClass |
 |-----------|-----------|---------|--------------|-------------|--------|--------|-------------|---------|----------|----------------|------------|-------------|-------------------|
 | S230518h  | HL        | 1002.0  | 276.0        | 473.0       | 6.7    | 44.5   | 1.0         | 81.0    | 15.0     | 0.0            | 7.0        | 5.0         | NS               |
 
-### `event_predictions_table_metadata.csv`
+### `GraceDB.csv`
 
 | EventName | GPSTime     | FAR  | Significant | GDB_GlitchScore | GDB_BNSScore | GDB_NSBHScore | GDB_BBHScore | GDB_Class |
 |-----------|-------------|------|-------------|-----------------|--------------|---------------|--------------|-----------|
